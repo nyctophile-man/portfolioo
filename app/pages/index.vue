@@ -18,6 +18,7 @@
         <div class="book" aria-live="polite"><div class="page" ref="pg">{{ role }}</div></div>
         <div class="cta"><a class="btn" href="#">Start a project <i>↗</i></a><a class="l" href="#">See my work</a></div>
       </div>
+    <ParticlePortrait />
     </main>
     <section class="magic-sec" id="doors" ref="doorsSection" :class="{ 'in-view': sectionVisible }">
     <h2>Magic happens behind the doors</h2>
@@ -60,6 +61,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import { doorsData, type Door } from '~/data/doors'
 import { storyData } from '~/data/story'
+import ParticlePortrait from '~/components/ParticlePortrait.vue'
 
 const roles = ['App Developer', 'UI/UX Designer', 'Graphic Designer', 'Web Developer']
 const i = ref(0)
@@ -360,6 +362,7 @@ nav::-webkit-scrollbar{display:none}
 nav a{color:var(--fg);text-decoration:none;padding:6px 10px;border-radius:20px;opacity:.75;transition:opacity .2s,background .2s}
 nav a:hover,nav a.on{opacity:1;background:color-mix(in srgb,var(--fg) 9%,transparent)}
 .hero{position:relative;max-width:1180px;margin:0 auto;padding:0 28px;min-height:calc(100vh - 70px);min-height:calc(100svh - 70px);display:grid;grid-template-columns:1.05fr .95fr;align-items:end;overflow:hidden}
+.hero > .particle-portrait{align-self:stretch;width:100%;height:calc(100% - 110px);min-height:520px;margin-top:110px;z-index:1}
 .copy{align-self:center;padding:30px 0 90px;position:relative;z-index:2}
 .status{display:inline-flex;align-items:center;gap:8px;font-size:12px;color:var(--mute);margin-bottom:20px}
 .status b{width:7px;height:7px;border-radius:50%;background:#35c46a;box-shadow:0 0 0 4px rgba(53,196,106,.18)}
@@ -390,7 +393,7 @@ h1 .am{display:block;color:var(--mute)}
 @keyframes sw{from{transform:rotate(-3deg)}to{transform:rotate(3deg)}}
 .hint{position:absolute;right:calc(5% + 22px);top:66px;font-size:11px;color:var(--mute);z-index:2}
 .foot{position:absolute;left:28px;bottom:24px;font-size:11px;color:var(--mute);z-index:2}
-@media(max-width:760px){.hero{grid-template-columns:1fr;min-height:auto}.copy{padding:20px 0 40px}.stage{justify-self:center;width:min(330px,82vw)}.foot,.hint{display:none}}
+@media(max-width:760px){.hero{grid-template-columns:1fr;min-height:auto}.hero>.particle-portrait{height:420px;min-height:420px;margin-top:0}.copy{padding:20px 0 40px}.stage{justify-self:center;width:min(330px,82vw)}.foot,.hint{display:none}}
 @media(prefers-reduced-motion:reduce){.cord{animation:none}.page.flip,.stage img{animation:none}}
 .magic-sec{position:relative;background:radial-gradient(ellipse 70% 50% at 50% 0%,#262a2a,#151717 70%);color:#f4f2ee;padding:90px 28px 110px;min-height:100vh;min-height:100svh;overflow:hidden}
 .magic-sec::after{content:"";position:absolute;left:0;right:0;bottom:0;height:22%;background:linear-gradient(transparent,#0b0c0c)}
@@ -454,7 +457,7 @@ h1 .am{display:block;color:var(--mute)}
   .story-sec{position:relative;background:var(--bg);color:var(--fg);overflow-x:hidden}
   .glow-story{position:fixed;inset:0;background:radial-gradient(ellipse 60% 50% at var(--mx,20%) var(--my,20%),rgba(150,150,60,.18),transparent 65%);pointer-events:none}
   .wrap-story{position:relative;max-width:1180px;margin:0 auto;padding:0 28px;display:grid;grid-template-columns:1fr 1fr;align-items:start;gap:70px}
-  .left-story{position:sticky;top:0;align-self:start;z-index:2;height:100vh;height:100svh;display:flex;flex-direction:column;justify-content:center;padding-bottom:40px;overflow:visible;background:var(--bg)}
+  .left-story{position:sticky;top:0;align-self:start;z-index:2;height:100vh;height:100svh;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding-bottom:40px;overflow:visible;background:none;text-align:left}
   .eyebrow-story{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--mute);margin-bottom:18px}
   .eyebrow-story b{width:7px;height:7px;border-radius:50%;background:#d99a2b;box-shadow:0 0 0 4px rgba(217,154,43,.2)}
   .left-story h2{margin:0;font-size:clamp(28px,3.6vw,46px);letter-spacing:-.03em;line-height:1.05;font-weight:600}
